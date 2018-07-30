@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jobs>
+   <metadata>
+      <row>
+         <version>12.2.0</version>
+      </row>
+   </metadata>
+   <general_attributes>
+      <row>
+         <minimum_ae_version>11.2</minimum_ae_version>
+         <auto_deactivation>A</auto_deactivation>
+         <child_flags>00000000000000000000000000000000</child_flags>
+         <platform>CIT</platform>
+         <last_runtimes>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</last_runtimes>
+         <max_parallel_action>2</max_parallel_action>
+         <mrt_time>000000</mrt_time>
+         <name>JOBS.FTPAGENT.LIST_TO_FILE</name>
+         <type>JOBS</type>
+         <inherit_output_filter>N</inherit_output_filter>
+         <queue>CLIENT_QUEUE</queue>
+         <description>get a file list and write it to a .txt file</description>
+         <versioning_id>1418009129</versioning_id>
+      </row>
+   </general_attributes>
+   <scripts>
+      <row>
+         <process><![CDATA[!:SET &HND# = PREP_PROCESS_FILENAME(&$AGENT#,'/35015',,,,,,'UC_LOGIN=&$LOGIN#')
+!:SET &WRITE# = WRITE_PROCESS(&HND#,'/35015/list.txt',&$AGENT#,&$LOGIN#)]]></process>
+      </row>
+      <row>
+         <post_process><![CDATA[:SET &HND# = PREP_PROCESS_REPORT()
+!:PROCESS &HND#
+!:  SET &LINE# = GET_PROCESS_LINE(&HND#)
+!:  P &LINE#
+!:ENDPROCESS
+
+!:SET &HND# = PREP_PROCESS_FILENAME(&$AGENT#,'/35015',,,,,,'UC_LOGIN=&$LOGIN#')
+:SET &WRITE# = WRITE_PROCESS(&HND#,'/35015/list.txt',&$AGENT#,&$LOGIN#)]]></post_process>
+      </row>
+   </scripts>
+   <job_attributes>
+      <row>
+         <platform>CIT</platform>
+         <agent>VVIESUP06_WS121_FTPAGENT01</agent>
+         <type>FTPAGENT</type>
+         <login>@LOGIN.DEFAULT</login>
+         <optional_reports>PLOG</optional_reports>
+         <job_report_path>2</job_report_path>
+         <sub_type>FTPJOB</sub_type>
+      </row>
+   </job_attributes>
+   <extended_values>
+      <row>
+         <type>2</type>
+         <name>componentName</name>
+         <value>FtpAgent</value>
+      </row>
+      <row>
+         <type>2</type>
+         <name>eraseSource</name>
+         <value>false</value>
+      </row>
+      <row>
+         <type>2</type>
+         <name>fileTransferInactiveTime</name>
+         <value>60</value>
+      </row>
+      <row>
+         <type>2</type>
+         <name>ifFileExistsOption</name>
+         <value>5</value>
+      </row>
+      <row>
+         <type>2</type>
+         <name>onFailureOption</name>
+         <value>3</value>
+      </row>
+      <row>
+         <type>2</type>
+         <name>parallelProcessingNumber</name>
+         <value>2</value>
+      </row>
+      <row>
+         <type>2</type>
+         <name>prompt_0_command</name>
+         <value>LIST</value>
+      </row>
+      <row>
+         <type>2</type>
+         <name>prompt_0_description</name>
+         <value>LIST</value>
+      </row>
+      <row>
+         <type>2</type>
+         <name>prompt_0_execConnection</name>
+         <value>CONN.FTPAGENT.AUTOMIC</value>
+      </row>
+      <row>
+         <type>2</type>
+         <name>prompt_0_failJobOnCommandFailure</name>
+         <value>true</value>
+      </row>
+      <row>
+         <type>2</type>
+         <name>prompt_0_sourceDir</name>
+         <value>/35015</value>
+      </row>
+      <row>
+         <type>2</type>
+         <name>retryAttempts</name>
+         <value>2</value>
+      </row>
+      <row>
+         <type>2</type>
+         <name>runType</name>
+         <value>FtpJob</value>
+      </row>
+      <row>
+         <is_connection>1</is_connection>
+         <type>2</type>
+         <name>targetHostDest</name>
+         <value>FtpJob</value>
+      </row>
+      <row>
+         <type>2</type>
+         <name>targetHostDest_name</name>
+         <value>Local File System</value>
+      </row>
+      <row>
+         <is_connection>1</is_connection>
+         <type>2</type>
+         <name>targetHostSource</name>
+         <value>CONN.FTPAGENT.AUTOMIC</value>
+      </row>
+      <row>
+         <type>2</type>
+         <name>targetHostSource_name</name>
+         <value>CONN.FTPAGENT.AUTOMIC</value>
+      </row>
+      <row>
+         <type>2</type>
+         <name>tryResumeFileTransfers</name>
+         <value>true</value>
+      </row>
+      <row>
+         <type>2</type>
+         <name>version</name>
+         <value>3.0</value>
+      </row>
+   </extended_values>
+   <rollback_definitions>
+      <row>
+      </row>
+   </rollback_definitions>
+</jobs>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<link>
+   <metadata>
+      <row>
+         <version>12.2.0</version>
+      </row>
+   </metadata>
+   <general_attributes>
+      <row>
+         <name>PCK.CUSTOM_ERT.PUB.ACTION.MULTIPLE_CRITICAL_PATHES</name>
+      </row>
+   </general_attributes>
+</link>

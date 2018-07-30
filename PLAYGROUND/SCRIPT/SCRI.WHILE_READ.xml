@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scri>
+   <metadata>
+      <row>
+         <version>12.2.0</version>
+      </row>
+   </metadata>
+   <general_attributes>
+      <row>
+         <minimum_ae_version>11.2</minimum_ae_version>
+         <auto_deactivation>A</auto_deactivation>
+         <child_flags>00000000000000000000000000000000</child_flags>
+         <last_runtimes>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</last_runtimes>
+         <max_parallel_action>1</max_parallel_action>
+         <mrt_time>000000</mrt_time>
+         <name>SCRI.WHILE_READ</name>
+         <type>SCRI</type>
+         <inherit_output_filter>N</inherit_output_filter>
+         <queue>CLIENT_QUEUE</queue>
+         <description>https://community.automic.com/discussion/11706/auto-populate-text-fields-dynamic-using-read-inside-beginread-endread</description>
+         <versioning_id>-164746849</versioning_id>
+      </row>
+   </general_attributes>
+   <scripts>
+      <row>
+         <process><![CDATA[!:DEFINE &ARRAY_FIELDS#, STRING, 50          /*Define max Array Size to store field names*/
+!
+!:SET &ARRAY_FIELDS#[1] = "NAME"
+!:SET &ARRAY_FIELDS#[2] = "AGE"
+!:SET &ARRAY_FIELDS#[3] = "CITY"
+!
+!:DEFINE &ARRAY_VALUES#, STRING, 50      /*Define max Array Size to store field values from user input */
+!
+:SET &INDEX# = 1
+
+:BEGINREAD
+!:  WHILE &INDEX# < LENGTH(&ARRAY_FIELDS#[])
+!:    IF &ARRAY_FIELDS#[&INDEX#] <> ""
+!:      READ &ARRAY_VALUES#[&INDEX#], "00", "Please enter your &ARRAY_FIELDS#[&INDEX#]"
+!:    ELSE
+!:      SET &INDEX# = LENGTH(&ARRAY_FIELDS#[])
+!:    ENDIF
+!:    SET &INDEX# = &INDEX# + 1
+!:  ENDWHILE
+:WHILE &INDEX# < 2
+:  P " =================================== "
+:  p "TEST : &INDEX#"
+:  P " =================================== "
+:ENDWHILE
+:ENDREAD]]></process>
+      </row>
+   </scripts>
+   <script_attributes>
+      <row>
+      </row>
+   </script_attributes>
+   <rollback_definitions>
+      <row>
+      </row>
+   </rollback_definitions>
+</scri>

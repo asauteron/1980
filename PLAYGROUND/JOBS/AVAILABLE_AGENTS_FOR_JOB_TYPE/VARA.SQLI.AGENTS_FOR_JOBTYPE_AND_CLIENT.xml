@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vara>
+   <metadata>
+      <row>
+         <version>12.2.0</version>
+      </row>
+   </metadata>
+   <general_attributes>
+      <row>
+         <minimum_ae_version>11.2</minimum_ae_version>
+         <child_flags>00000000000000000000000000000000</child_flags>
+         <last_runtimes>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</last_runtimes>
+         <name>VARA.SQLI.AGENTS_FOR_JOBTYPE_AND_CLIENT</name>
+         <type>VARA</type>
+         <sub_type>SQLI</sub_type>
+         <versioning_id>1410778196</versioning_id>
+      </row>
+   </general_attributes>
+   <variable_definitions>
+      <row>
+         <column_count>5</column_count>
+         <on_not_found>I</on_not_found>
+         <sort_order>0</sort_order>
+         <type>SQLI</type>
+         <sql><![CDATA[SELECT DISTINCT OH_Name
+FROM OH,HACL,HOST
+WHERE OH_Otype='HOST'
+AND OH_DELETEflag='0'
+AND OH_Idnr=HACL_OH_Idnr
+AND OH_Idnr=HOST_OH_Idnr
+AND HOST_Active='1'
+AND HACL_Client=&$CLIENT#
+AND HOST_HostAttrType='WINDOWS']]></sql>
+         <data_type>C</data_type>
+         <validity_range>FREI</validity_range>
+      </row>
+   </variable_definitions>
+</vara>

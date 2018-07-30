@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vara>
+   <metadata>
+      <row>
+         <version>12.2.0</version>
+      </row>
+   </metadata>
+   <general_attributes>
+      <row>
+         <minimum_ae_version>11.2</minimum_ae_version>
+         <child_flags>00000000000000000000000000000000</child_flags>
+         <last_runtimes>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</last_runtimes>
+         <name>VARA.BACKEND.UNIX.CMD</name>
+         <type>VARA</type>
+         <sub_type>BACKEND</sub_type>
+         <versioning_id>2131968853</versioning_id>
+      </row>
+   </general_attributes>
+   <variable_definitions>
+      <row>
+         <column_count>5</column_count>
+         <agent>UBUNTU01</agent>
+         <login>LOGIN.SAUAN03</login>
+         <on_not_found>I</on_not_found>
+         <sort_order>0</sort_order>
+         <type>BACKEND</type>
+         <data_type>C</data_type>
+         <validity_range>FREI</validity_range>
+      </row>
+   </variable_definitions>
+   <backend_tabs>
+      <row>
+         <platform>WINDOWS</platform>
+         <tab_number>1</tab_number>
+         <name>WINDOWS</name>
+      </row>
+      <row>
+         <platform>UNIX</platform>
+         <tab_number>2</tab_number>
+         <name>UNIX</name>
+      </row>
+   </backend_tabs>
+   <commands>
+      <row>
+         <command>ps -ef</command>
+         <column_descriptions>UID:1(8);PID:10(5);PPID:15(6);C:21(3);STIME:25(5);TTY:31(8);TIME:40(8);CMD:49(255)</column_descriptions>
+         <line_number>1</line_number>
+         <operating_system>Linux</operating_system>
+         <backend_tab_number>2</backend_tab_number>
+         <version>*</version>
+      </row>
+   </commands>
+</vara>

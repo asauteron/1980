@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<call>
+   <metadata>
+      <row>
+         <version>12.2.0</version>
+      </row>
+   </metadata>
+   <general_attributes>
+      <row>
+         <minimum_ae_version>11.2</minimum_ae_version>
+         <auto_deactivation>A</auto_deactivation>
+         <child_flags>00000000000000000000000000000000</child_flags>
+         <ert>146</ert>
+         <last_runtimes>MgAAAHQAAAAaAAAAegAAALYBAABdAAAAIwAAAKkAAABFAAAABgEAADsAAAA9AAAASAAAAFMAAAANAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</last_runtimes>
+         <max_parallel_action>1</max_parallel_action>
+         <mrt_time>000000</mrt_time>
+         <name>ALERT.JOB.INCIDENT</name>
+         <type>CALL</type>
+         <inherit_output_filter>N</inherit_output_filter>
+         <queue>CLIENT_QUEUE</queue>
+         <sub_type>0</sub_type>
+         <versioning_id>-394791106</versioning_id>
+      </row>
+   </general_attributes>
+   <notification_attributes>
+      <row>
+         <priority>1</priority>
+         <subject>JOB Failure alert</subject>
+         <content>The Job &amp;JOB# has failed twice. A Service Now incident ticket was created: https://ven01747.service-now.com/nav_to.do?uri=incident.do?sys_id=&amp;INC_NUMBER#</content>
+      </row>
+   </notification_attributes>
+   <notification_content>
+      <row>
+         <line_number>1</line_number>
+         <user_id>SAA/PRE</user_id>
+      </row>
+      <row>
+         <line_number>2</line_number>
+         <user_id>SAUAN03/PRE</user_id>
+      </row>
+   </notification_content>
+   <rollback_definitions>
+      <row>
+      </row>
+   </rollback_definitions>
+</call>

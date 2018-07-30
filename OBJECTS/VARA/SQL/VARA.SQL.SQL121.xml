@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vara>
+   <metadata>
+      <row>
+         <version>12.2.0</version>
+      </row>
+   </metadata>
+   <general_attributes>
+      <row>
+         <minimum_ae_version>11.2</minimum_ae_version>
+         <child_flags>00000000000000000000000000000000</child_flags>
+         <last_runtimes>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</last_runtimes>
+         <name>VARA.SQL.SQL121</name>
+         <type>VARA</type>
+         <sub_type>SQL</sub_type>
+         <versioning_id>-233741119</versioning_id>
+      </row>
+   </general_attributes>
+   <variable_definitions>
+      <row>
+         <column_count>5</column_count>
+         <connection>CONN.SQL.LOCAL.SQL121</connection>
+         <on_not_found>I</on_not_found>
+         <sort_order>0</sort_order>
+         <type>SQL</type>
+         <sql>SELECT OH_NAME, OH_Client FROM OH WHERE OH_DELETEFLAG='0'</sql>
+         <data_type>C</data_type>
+         <validity_range>FREI</validity_range>
+      </row>
+   </variable_definitions>
+</vara>

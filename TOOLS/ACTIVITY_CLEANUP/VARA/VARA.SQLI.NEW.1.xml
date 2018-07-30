@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vara>
+   <metadata>
+      <row>
+         <version>12.2.0</version>
+      </row>
+   </metadata>
+   <general_attributes>
+      <row>
+         <minimum_ae_version>11.2</minimum_ae_version>
+         <child_flags>00000000000000000000000000000000</child_flags>
+         <last_runtimes>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</last_runtimes>
+         <name>VARA.SQLI.NEW.1</name>
+         <type>VARA</type>
+         <sub_type>SQLI</sub_type>
+         <versioning_id>-371695725</versioning_id>
+      </row>
+   </general_attributes>
+   <variable_definitions>
+      <row>
+         <column_count>5</column_count>
+         <on_not_found>I</on_not_found>
+         <sort_order>0</sort_order>
+         <type>SQLI</type>
+         <sql><![CDATA[SELECT EH_Client AS "Client", MSGTX_TEXT "Status", count(*) as "Active Runs"
+FROM EH, MSGTX
+WHERE EH_STATUS = MSGTX_MSG_IDNR
+AND MSGTX_MSGL_SHORT = 'E'
+AND EH_Client = &CLIENT#
+GROUP BY EH_CLIENT, MSGTX_TEXT
+ORDER BY 3 DESC;]]></sql>
+         <data_type>C</data_type>
+         <validity_range>FREI</validity_range>
+      </row>
+   </variable_definitions>
+</vara>

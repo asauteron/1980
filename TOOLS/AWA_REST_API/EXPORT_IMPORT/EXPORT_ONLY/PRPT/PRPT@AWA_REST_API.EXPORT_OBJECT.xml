@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prpt>
+   <metadata>
+      <row>
+         <version>12.2.0</version>
+      </row>
+   </metadata>
+   <general_attributes>
+      <row>
+         <minimum_ae_version>11.2</minimum_ae_version>
+         <child_flags>00000000000000000000000000000000</child_flags>
+         <last_runtimes>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</last_runtimes>
+         <max_parallel_action>1</max_parallel_action>
+         <mrt_time>000000</mrt_time>
+         <name>PRPT@AWA_REST_API.EXPORT_OBJECT</name>
+         <type>PRPT</type>
+         <queue>CLIENT_QUEUE</queue>
+         <description>Select object to export</description>
+         <versioning_id>-1101687150</versioning_id>
+      </row>
+   </general_attributes>
+   <gui_description>
+      <row>
+         <xui><![CDATA[<dialog height="506" icon="PRPT" id="PRPTS" left="279" top="4" width="420"><readpanel fill="b" id="PRPTBOX" nl="1" scroll="v" text="Object Export"><properties><entry name="text">Object Export</entry><entry name="modifiable">0</entry></properties></readpanel></dialog>]]></xui>
+      </row>
+   </gui_description>
+   <elements>
+      <row>
+         <input_assistent>1</input_assistent>
+         <line_number>1</line_number>
+         <name>OBJECT#</name>
+         <reference>VARA.SEC_SQLI@AWA_REST_API.OBJECT_LIST</reference>
+         <reference_type>VARA</reference_type>
+         <separator>;</separator>
+         <xui><![CDATA[<text alt="1" customfield="" enabled="1" fill="b" focus="0" id="OBJECTs.00" initvalue="" inputassistance="1" len="" modifiable="1" multiline="0" multilineIcon="0" multiselect="0" nl="1" onchangereset="" quotes="" reference="VARA.SEC_SQLI@AWA_REST_API_OBJECT.LIST" regex="" required="0" resetable="1" separator=";" showaspassword="0" text="Choose object to export" tooltip="" upper="0" validmax="" validmin="" xmlkey="" xmlpath=""><properties><entry listparam="C" name="reference">VARA.SEC_SQLI@AWA_REST_API_OBJECT.LIST</entry><entry name="text">Choose object to export</entry><entry name="multiselect">0</entry><entry name="separator">;</entry><entry name="validmin"/><entry name="validmax"/><entry name="len"/><entry name="quotes"/><entry name="id">OBJECTs.00</entry><entry name="inputassistance">1</entry><entry name="enabled">0</entry><entry name="upper">0</entry><entry name="focus">0</entry><entry name="showaspassword">0</entry><entry name="tooltip"/><entry name="customfield"/><entry name="xmlkey"/><entry name="xmlpath"/><entry name="modifiable">1</entry><entry name="multiline">0</entry><entry name="multilineIcon">0</entry><entry name="alt">1</entry><entry name="fill">b</entry><entry name="nl">1</entry><entry name="regex"/><entry name="required">0</entry><entry name="initvalue"/><entry name="onchangereset"/><entry name="resetable">1</entry></properties></text>]]></xui>
+         <ui_type>text</ui_type>
+      </row>
+   </elements>
+</prpt>

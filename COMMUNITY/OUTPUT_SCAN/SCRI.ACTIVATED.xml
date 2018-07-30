@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scri>
+   <metadata>
+      <row>
+         <version>12.2.0</version>
+      </row>
+   </metadata>
+   <general_attributes>
+      <row>
+         <minimum_ae_version>11.2</minimum_ae_version>
+         <auto_deactivation>A</auto_deactivation>
+         <child_flags>00000000000000000000000000000000</child_flags>
+         <ert>1</ert>
+         <last_runtimes>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</last_runtimes>
+         <max_parallel_action>1</max_parallel_action>
+         <mrt_time>000000</mrt_time>
+         <name>SCRI.ACTIVATED</name>
+         <type>SCRI</type>
+         <inherit_output_filter>N</inherit_output_filter>
+         <queue>CLIENT_QUEUE</queue>
+         <versioning_id>-1230096960</versioning_id>
+      </row>
+   </general_attributes>
+   <scripts>
+      <row>
+         <process><![CDATA[!:SET &STATUS# = GET_STATISTIC_DETAIL(&RUNID#,STATUS)
+!:SET &NAME# = GET_STATISTIC_DETAIL(&RUNID#,NAME)
+!:SET &RC# = GET_STATISTIC_DETAIL(&RUNID#,RETURN_CODE)
+!:P Task &NAME# ended with status &STATUS# and Return code &RC#
+:READ &UC_CAUSE_NR,,
+:SET &STATUS# = GET_UC_OBJECT_STATUS(,&UC_CAUSE_NR,'STATUS_TEXT')
+:P &STATUS#
+:READ &UC_CAUSE_STATE,,
+:READ &UC_CAUSE_RETCODE,,]]></process>
+      </row>
+   </scripts>
+   <script_attributes>
+      <row>
+      </row>
+   </script_attributes>
+   <rollback_definitions>
+      <row>
+      </row>
+   </rollback_definitions>
+</scri>

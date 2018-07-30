@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vara>
+   <metadata>
+      <row>
+         <version>12.2.0</version>
+      </row>
+   </metadata>
+   <general_attributes>
+      <row>
+         <minimum_ae_version>12.1</minimum_ae_version>
+         <platform>IA</platform>
+         <last_runtimes>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</last_runtimes>
+         <name>VARA.EVENT_DEFINITION</name>
+         <type>VARA</type>
+         <sub_type>XML</sub_type>
+         <versioning_id>-233786549</versioning_id>
+      </row>
+   </general_attributes>
+   <variable_definitions>
+      <row>
+         <column_count>5</column_count>
+         <on_not_found>I</on_not_found>
+         <sort_order>0</sort_order>
+         <type>XML</type>
+         <data_type>C</data_type>
+         <validity_range>FREI</validity_range>
+      </row>
+   </variable_definitions>
+   <static_values>
+      <row>
+         <client>1980</client>
+         <xml><![CDATA[<event_attributes><description>a number, like an ID or a count</description><key>count</key><type>NUMBER</type></event_attributes>]]></xml>
+         <validity_range>FREI</validity_range>
+         <key>attribute_4d89645f-dd80-4ec3-bae4-2c180dc934fe</key>
+      </row>
+      <row>
+         <client>1980</client>
+         <xml><![CDATA[<event_attributes><description>a message to pass</description><key>message</key><type>STRING</type></event_attributes>]]></xml>
+         <validity_range>FREI</validity_range>
+         <key>attribute_b79b8b12-5365-4afc-b772-2e26d3d488e9</key>
+      </row>
+      <row>
+         <client>1980</client>
+         <xml><![CDATA[<event_attributes><description>the status of something</description><key>success</key><type>BOOLEAN</type></event_attributes>]]></xml>
+         <validity_range>FREI</validity_range>
+         <key>attribute_d197a407-a53d-43d6-8325-5f12c83ee9fe</key>
+      </row>
+   </static_values>
+</vara>
