@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jobi>
+   <metadata>
+      <row>
+         <version>12.2.0</version>
+      </row>
+   </metadata>
+   <general_attributes>
+      <row>
+         <minimum_ae_version>11.2</minimum_ae_version>
+         <child_flags>00000000000000000000000000000000</child_flags>
+         <last_runtimes>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</last_runtimes>
+         <name>DC.INCL.POWERSHELL.SERVER.GETCRED</name>
+         <type>JOBI</type>
+         <description>Gets credentials for target server</description>
+         <versioning_id>-1037683526</versioning_id>
+      </row>
+   </general_attributes>
+   <scripts>
+      <row>
+         <process><![CDATA[! ********************************************************************
+! REQUIREMENTS;
+!    You must populate variable &PowershellTargetServer#
+!
+! It populates a $Cred object you can use in Powershell commands like so;
+!    Invoke-Command -ComputerName &MyServer# -ScriptBlock { get-host } -credential $Cred
+!
+! SAIF Corporation, Pete Wirfs, July 2014
+! (There is no warranty for this include)
+! ********************************************************************
+
+:set &PowerShellTargetServer# = str_cat(&PowershellTargetServer#,"")
+:if &PowerShellTargetServer# = ""
+:  print "ERROR in DC.INCL.POWERSHELL.SERVER.GETCRED.  PowerShellTargetServer not provided!"
+:  exit 999
+:endif
+
+! Increase PowerShell buffersize - makes output easier to read
+$newbuffer=(Get-Host).UI.RawUI.BufferSize
+$newbuffer.Height=2000
+$newbuffer.Width=300
+(Get-Host).UI.RawUI.BufferSize=$newbuffer
+
+! This tells our PowerShell environment to re-evaluate its output stream
+! pointers on the fly.  This overcomes a problemwith UC_JOBMD hijacking the output streams.
+! REFERENCE: http://www.leeholmes.com/blog/2008/07/30/workaround-the-os-handles-position-is-not-what-filestream-expected/
+$bindingFlags = [Reflection.BindingFlags] "Instance,NonPublic,GetField"
+$objectRef = $host.GetType().GetField("externalHostRef", $bindingFlags).GetValue($host)
+$bindingFlags = [Reflection.BindingFlags] "Instance,NonPublic,GetProperty"
+$consoleHost = $objectRef.GetType().GetProperty("Value", $bindingFlags).GetValue($objectRef, @())
+[void] $consoleHost.GetType().GetProperty("IsStandardOutputRedirected", $bindingFlags).GetValue($consoleHost, @())
+ $bindingFlags = [Reflection.BindingFlags] "Instance,NonPublic,GetField"
+$field = $consoleHost.GetType().GetField("standardOutputWriter", $bindingFlags)
+ $field.SetValue($consoleHost, [Console]::Out)
+ $field2 = $consoleHost.GetType().GetField("standardErrorWriter", $bindingFlags)
+ $field2.SetValue($consoleHost, [Console]::Out)
+
+!:print "Contents of UC_JOBMD before: '&UC_JOBMD'"
+:set &HOST# = get_att(host)
+! Behave differently for 32bit agents versus 64bit agents
+:if &HOST# = "APPUTILD" OR "APPUTILP"
+:   set &UC_JOBMD = "C:\uc4\Agents\Windows\bin\UCXJWI3M.EXE"
+:else
+:   set &UC_JOBMD = "C:\uc4\Agents\Windows\bin\UCXJWX6M.EXE"
+:endif
+!:print "Contents of UC_JOBMD after : '&UC_JOBMD'"
+
+!Retrieves encrypted credentials for target server
+:set &ServerUser#     = GET_LOGIN(LOGIN.POWERSHELL,"&PowerShellTargetServer#",SAIF,LOGIN_INFO)
+:set &ServerPassword# = GET_LOGIN(LOGIN.POWERSHELL,"&PowerShellTargetServer#",SAIF,PASSWORD)
+:set &ServerPassword# = substr(&ServerPassword#,3)
+:set &ServerPassword# = str_cat("--",&ServerPassword#)
+:print Userid for &PowerShellTargetServer#: &ServerUser#
+!:print Retrieved password for "&PowerShellTargetServer#": &ServerPassword#
+echo "Userid for &PowerShellTargetServer#: &ServerUser#"
+
+ $userName     = "&ServerUser#"
+ switch ($RC)
+    {
+        True    { $EXIT_CODE = 0 }
+        False   { $EXIT_CODE = 1 ; echo "POWERSHELL RC=$RC ; echo "Aborting script! (a)" ; exit $EXIT_CODE }
+        default { $EXIT_CODE = 1 ; echo "POWERSHELL RC=$RC ; echo "Aborting Script! (a)" ; exit $EXIT_CODE }
+    }
+
+$SecurePassword = (&UC_JOBMD CMD="echo &ServerPassword#")
+ switch ($RC)
+    {
+        True    { $EXIT_CODE = 0 }
+        False   { $EXIT_CODE = 1 ; echo "POWERSHELL RC=$RC ; echo "Aborting script! (b)" ; exit $EXIT_CODE }
+        default { $EXIT_CODE = 1 ; echo "POWERSHELL RC=$RC ; echo "Aborting Script! (b)" ; exit $EXIT_CODE }
+    }
+
+! Create credential object
+ $SecurePassWord = ConvertTo-SecureString $SecurePassword -AsPlainText -Force
+ switch ($RC)
+    {
+        True    { $EXIT_CODE = 0 }
+        False   { $EXIT_CODE = 1 ; echo "POWERSHELL RC=$RC ; echo "Aborting script! (c)" ; exit $EXIT_CODE }
+        default { $EXIT_CODE = 1 ; echo "POWERSHELL RC=$RC ; echo "Aborting Script! (c)" ; exit $EXIT_CODE }
+    }
+ $Cred = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList ($UserName, $SecurePassWord)
+ switch ($RC)
+    {
+        True    { $EXIT_CODE = 0 }
+        False   { $EXIT_CODE = 1 ; echo "POWERSHELL RC=$RC ; echo "Aborting script! (d)" ; exit $EXIT_CODE }
+        default { $EXIT_CODE = 1 ; echo "POWERSHELL RC=$RC ; echo "Aborting Script! (d)" ; exit $EXIT_CODE }
+    }]]></process>
+      </row>
+   </scripts>
+</jobi>

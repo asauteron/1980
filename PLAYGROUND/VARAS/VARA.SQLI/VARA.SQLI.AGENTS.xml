@@ -28,6 +28,24 @@ WHERE OH_Otype='HOST'
 AND OH_DELETEflag='0'
 AND OH_Idnr=HACL_OH_Idnr
 AND HACL_Client=&$CLIENT#]]></sql>
+         <sql_db2><![CDATA[SELECT DISTINCT OH_Name
+FROM OH,HACL
+WHERE OH_Otype='HOST'
+AND OH_DELETEflag='0'
+AND OH_Idnr=HACL_OH_Idnr
+AND HACL_Client=&$CLIENT#]]></sql_db2>
+         <sql_oracle><![CDATA[SELECT DISTINCT OH_Name
+FROM OH,HACL
+WHERE OH_Otype='HOST'
+AND OH_DELETEflag='0'
+AND OH_Idnr=HACL_OH_Idnr
+AND HACL_Client=&$CLIENT#]]></sql_oracle>
+         <ovd_sql_postgres><![CDATA[SELECT DISTINCT OH_Name
+FROM OH,HACL
+WHERE OH_Otype='HOST'
+AND OH_DELETEflag='0'
+AND OH_Idnr=HACL_OH_Idnr
+AND HACL_Client=&$CLIENT#]]></ovd_sql_postgres>
          <data_type>C</data_type>
          <validity_range>FREI</validity_range>
       </row>

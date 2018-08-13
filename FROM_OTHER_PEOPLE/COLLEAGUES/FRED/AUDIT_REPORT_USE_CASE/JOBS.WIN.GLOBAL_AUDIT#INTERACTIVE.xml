@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jobs>
+   <metadata>
+      <row>
+         <version>12.2.0</version>
+      </row>
+   </metadata>
+   <general_attributes>
+      <row>
+         <minimum_ae_version>11.2</minimum_ae_version>
+         <auto_deactivation>F</auto_deactivation>
+         <child_flags>00000000000000000000000000000000</child_flags>
+         <deactivation_condition>ANY_OK</deactivation_condition>
+         <ert>33</ert>
+         <platform>WINDOWS</platform>
+         <last_runtimes>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</last_runtimes>
+         <max_parallel_action>1</max_parallel_action>
+         <mrt_time>000000</mrt_time>
+         <name>JOBS.WIN.GLOBAL_AUDIT#INTERACTIVE</name>
+         <has_prompts>1</has_prompts>
+         <type>JOBS</type>
+         <has_object_variables>1</has_object_variables>
+         <inherit_output_filter>N</inherit_output_filter>
+         <queue>CLIENT_QUEUE</queue>
+         <description>Generates an Automic Audit Report</description>
+         <versioning_id>2054779571</versioning_id>
+      </row>
+   </general_attributes>
+   <scripts>
+      <row>
+         <process><![CDATA[
+
+:IF &typaudit# = "GLOBAL"
+UCYBDBRR -LE -B -A -C&CLIENT# -O&PATHAUDIT#\AUDITGLOBAL_&CLIENT#_&$PHYS_DATE_DD_MM_YYYY_d#_&$PHYS_TIME_HHMMSS#.txt -D1&DATE_START#000000 -D2&DATE_END#235959
+:  ELSE
+UCYBDBRR -LE -B -A -C&CLIENT# -F&typaudit# -O&PATHAUDIT#\AUDIT_&typaudit#_&CLIENT#_&$PHYS_DATE_DD_MM_YYYY_d#_&$PHYS_TIME_HHMMSS#.txt -D1&DATE_START#000000 -D2&DATE_END#235959
+:ENDIF
+
+
+
+@set retcode=%errorlevel%
+@if NOT %ERRORLEVEL% == 0 goto :retcode
+
+]]></process>
+      </row>
+      <row>
+         <pre_process><![CDATA[
+!        ACCESS - unauthorized accesses
+!        CANCEL - aborting tasks
+!        CREATE - creating new objects
+!        DELETE - deleting objects
+!        IMPORT - importing objects
+!        MOVE - moving objects
+!        OBJ_MOD - object modifications
+!        RENAME - renaming objects
+!        RESTART - restarting tasks
+!        RESTORE - restoring objects
+!        RUN_MOD - modifications at runtime
+!        START - starting tasks
+!        USER - successful user logons and logoffs
+!
+
+:SET &typaudit# = &AUDIT#
+
+:SET &DATE_END# = CONV_DATE("YYYY-MM-DD:&END#",YYYYMMDD)
+:SET &DATE_START# = CONV_DATE("YYYY-MM-DD:&START#",YYYYMMDD)
+:P &DATE_END#
+:P &DATE_START#
+]]></pre_process>
+      </row>
+      <row>
+         <post_process><![CDATA[! Gets the filename minus its txt extension
+
+:IF &typaudit# = "GLOBAL"
+
+
+:  SET &HND# = PREP_PROCESS_REPORT("JOBS", , "REP", "argv [5] = *")
+:  PROCESS &HND#
+:    SET &RET# = GET_PROCESS_LINE(&HND#)
+:    SET &POS# = STR_FIND(&RET#, "-O")
+:    SET &POS# = ADD(&POS#, 2)
+:    SET &FILE# = STR_CUT(&RET#, &POS#)
+:    SET &FILE# = STR_SUB(&FILE#, ".txt", "")
+:    PRINT &FILE#
+:  ENDPROCESS
+
+:ELSE
+
+:  SET &HND# = PREP_PROCESS_REPORT("JOBS", , "REP", "argv [6] = *")
+:  PROCESS &HND#
+:    SET &RET# = GET_PROCESS_LINE(&HND#)
+:    SET &POS# = STR_FIND(&RET#, "-O")
+:    SET &POS# = ADD(&POS#, 2)
+:    SET &FILE# = STR_CUT(&RET#, &POS#)
+:    SET &FILE# = STR_SUB(&FILE#, ".txt", "")
+:    PRINT &FILE#
+:  ENDPROCESS
+
+
+:ENDIF
+
+
+! Activates the zip and sending of the audit via this job
+
+:SET &ACTJOB# = ACTIVATE_UC_OBJECT("JOBS.WIN.GLOBAL_AUDIT#INTERACTIVE_ZIP", WAIT, , , , PASS_VALUES)]]></post_process>
+      </row>
+   </scripts>
+   <job_attributes>
+      <row>
+         <activation_at_runtime>1</activation_at_runtime>
+         <platform>WINDOWS</platform>
+         <agent>VWGGSO07</agent>
+         <login>LOGIN.WINDOWS</login>
+         <job_report_path>2</job_report_path>
+         <win_work_dir>D:\UC4\UC4900A\Utility\bin</win_work_dir>
+         <win_typ>0</win_typ>
+         <win_view>0</win_view>
+         <win_logon_as_batch>0</win_logon_as_batch>
+         <win_show_at_desktop>0</win_show_at_desktop>
+         <win_report_by_script>0</win_report_by_script>
+         <job_object></job_object>
+         <win_cmd></win_cmd>
+      </row>
+   </job_attributes>
+   <object_variables>
+      <row>
+         <name>&amp;DATE_END#</name>
+      </row>
+      <row>
+         <name>&amp;DATE_START#</name>
+      </row>
+      <row>
+         <name>&amp;FILE#</name>
+      </row>
+      <row>
+         <value>D:\UC4\Audit_Reporting</value>
+         <name>&amp;PATHAUDIT#</name>
+      </row>
+      <row>
+         <name>&amp;TYPAUDIT#</name>
+      </row>
+   </object_variables>
+   <prompt_set_list>
+      <row>
+         <line_number>1</line_number>
+         <prompt_set>PRPT.AUDITREPORT</prompt_set>
+         <display_order>1</display_order>
+      </row>
+   </prompt_set_list>
+   <prompt_set_defaults>
+      <row>
+         <prompt_set_element_number>1</prompt_set_element_number>
+         <prompt_set>PRPT.AUDITREPORT</prompt_set>
+         <value>START</value>
+         <variable_name>AUDIT#</variable_name>
+      </row>
+      <row>
+         <prompt_set_element_number>1</prompt_set_element_number>
+         <prompt_set>PRPT.AUDITREPORT</prompt_set>
+         <value>0002</value>
+         <variable_name>CLIENT#</variable_name>
+      </row>
+      <row>
+         <alternative_view>1</alternative_view>
+         <prompt_set_element_number>1</prompt_set_element_number>
+         <prompt_set>PRPT.AUDITREPORT</prompt_set>
+         <value>&amp;$PHYS_DATE_DD_MM_YYYY_p#</value>
+         <variable_name>END#</variable_name>
+      </row>
+      <row>
+         <alternative_view>1</alternative_view>
+         <prompt_set_element_number>1</prompt_set_element_number>
+         <prompt_set>PRPT.AUDITREPORT</prompt_set>
+         <value>&amp;$PHYS_DATE_DD_MM_YYYY_p#</value>
+         <variable_name>START#</variable_name>
+      </row>
+   </prompt_set_defaults>
+   <rollback_definitions>
+      <row>
+      </row>
+   </rollback_definitions>
+</jobs>

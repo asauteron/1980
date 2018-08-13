@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jobs>
+   <metadata>
+      <row>
+         <version>12.2.0</version>
+      </row>
+   </metadata>
+   <general_attributes>
+      <row>
+         <minimum_ae_version>11.2</minimum_ae_version>
+         <auto_deactivation>A</auto_deactivation>
+         <child_flags>00000000000000000000000000000000</child_flags>
+         <ert>4</ert>
+         <platform>UNIX</platform>
+         <last_runtimes>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</last_runtimes>
+         <max_parallel_action>1</max_parallel_action>
+         <mrt_time>000000</mrt_time>
+         <name>JS.RUN.LICENSE.CHECK.UNIX</name>
+         <type>JOBS</type>
+         <has_object_variables>1</has_object_variables>
+         <inherit_output_filter>N</inherit_output_filter>
+         <queue>CLIENT_QUEUE</queue>
+         <description>License Check - Linux</description>
+         <versioning_id>-1704754408</versioning_id>
+      </row>
+   </general_attributes>
+   <scripts>
+      <row>
+         <process><![CDATA[cd &Bin_Path#
+&JAVA_PATH#/java -jar lrt.jar reports-create]]></process>
+      </row>
+   </scripts>
+   <job_attributes>
+      <row>
+         <platform>UNIX</platform>
+         <agent><![CDATA[<UNIX>]]></agent>
+         <job_report_path>2</job_report_path>
+         <priority>0</priority>
+         <unix_shell></unix_shell>
+         <unix_shell_options></unix_shell_options>
+         <unix_type></unix_type>
+         <unix_cmd></unix_cmd>
+      </row>
+   </job_attributes>
+   <object_variables>
+      <row>
+         <value>/opt/Automic/Tools/LicenseTool/bin</value>
+         <name>&amp;BIN_PATH#</name>
+      </row>
+      <row>
+         <value>/opt/Automic/External.Resources/JDK/jdk1.8.0_144/bin</value>
+         <name>&amp;JAVA_PATH#</name>
+      </row>
+   </object_variables>
+   <rollback_definitions>
+      <row>
+      </row>
+   </rollback_definitions>
+</jobs>

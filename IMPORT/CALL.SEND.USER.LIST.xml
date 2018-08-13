@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<call>
+   <metadata>
+      <row>
+         <version>12.2.0</version>
+      </row>
+   </metadata>
+   <general_attributes>
+      <row>
+         <minimum_ae_version>11.2</minimum_ae_version>
+         <auto_deactivation>A</auto_deactivation>
+         <child_flags>00000000000000000000000000000000</child_flags>
+         <ert>222</ert>
+         <last_runtimes>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</last_runtimes>
+         <max_parallel_action>1</max_parallel_action>
+         <mrt_time>000000</mrt_time>
+         <name>CALL.SEND.USER.LIST</name>
+         <type>CALL</type>
+         <inherit_output_filter>N</inherit_output_filter>
+         <queue>CLIENT_QUEUE</queue>
+         <sub_type>3</sub_type>
+         <versioning_id>-1099660055</versioning_id>
+      </row>
+   </general_attributes>
+   <scripts>
+      <row>
+         <process><![CDATA[: SET &HND# = PREP_PROCESS_VAR(VARA.SQLI.USER.INFO)
+: PROCESS &HND#
+:   SET &USRG# = GET_PROCESS_LINE(&HND#,2)
+:   SET &USR# = GET_PROCESS_LINE(&HND#,3)
+:   SET &CLNT# = GET_PROCESS_LINE(&HND#,4)
+:   SET &USR_FIRSTNAME# = GET_PROCESS_LINE(&HND#,5)
+:   SET &USR_LASTNAME# = GET_PROCESS_LINE(&HND#,6)
+:   SET &USR_PW_CHNG# = GET_PROCESS_LINE(&HND#,7)
+:   SET &TABLEROW# = '<tr><td>&USRG#</td><td>&USR#</td><td>&CLNT#</td><td>&USR_FIRSTNAME#</td><td>&USR_LASTNAME#</td><td>&USR_PW_CHNG#</td></tr>'
+:   PUT_ATT_APPEND CALL_TEXT ='&TABLEROW#'
+: ENDPROCESS
+
+:PUT_ATT_APPEND CALL_TEXT = "</table></body></html>"
+]]></process>
+      </row>
+   </scripts>
+   <notification_attributes>
+      <row>
+         <priority>1</priority>
+         <subject>List of users &amp;$PHYS_DATE_DD_MM_YYYY_d#</subject>
+         <content><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<style type="text/css">
+table, th, td 
+{
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-spacing: 5px;  
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+</style>
+<title>Users</title>
+</head>
+<body>
+
+
+<strong>These users will have to change their password :</strong>
+<br><br>
+<table>
+<tr>
+<th>UserGroup</th><th>User</th><th>Client #</th><th>FirstName</th><th>SecondName</th><th>LastPasswordChange</th>
+</tr>]]></content>
+      </row>
+   </notification_attributes>
+   <rollback_definitions>
+      <row>
+      </row>
+   </rollback_definitions>
+</call>
