@@ -32,13 +32,13 @@
    <workflow_definitions>
       <row>
          <active>1</active>
+         <calendar_condition_type>2</calendar_condition_type>
          <connected_to_end>1</connected_to_end>
          <earliest_start_time>001545</earliest_start_time>
          <line_number>1</line_number>
          <mrt_time>000000</mrt_time>
          <object_name>CALL.TEST</object_name>
          <object_type>CALL</object_type>
-         <postcondition_action>1</postcondition_action>
       </row>
       <row>
          <active>1</active>
@@ -48,7 +48,14 @@
          <mrt_time>000000</mrt_time>
          <object_name>CALL.TEST</object_name>
          <object_type>CALL</object_type>
-         <postcondition_action>1</postcondition_action>
       </row>
    </workflow_definitions>
+   <calendar_conditions>
+      <row>
+         <calendar_event>FIRST.DAY.OF.MONTH</calendar_event>
+         <calendar>CALE.DEMO</calendar>
+         <workflow_line_number>1</workflow_line_number>
+         <line_number>1</line_number>
+      </row>
+   </calendar_conditions>
 </jsch>

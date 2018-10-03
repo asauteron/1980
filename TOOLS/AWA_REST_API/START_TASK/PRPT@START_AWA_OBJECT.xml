@@ -20,16 +20,16 @@
    </general_attributes>
    <gui_description>
       <row>
-         <xui><![CDATA[<dialog height="506" icon="PRPT" id="PRPTS" left="279" top="4" width="420"><readpanel fill="b" id="PRPTBOX" nl="1" scroll="v" text="PRPT"><properties><entry name="text">PRPT</entry><entry name="modifiable">0</entry></properties></readpanel></dialog>]]></xui>
+         <xui><![CDATA[<dialog height="506" icon="PRPT" id="PRPTS" left="279" top="4" width="420"><readpanel fill="b" id="PRPTBOX" nl="1" scroll="v" text="Start executable object"><properties><entry name="text">Start executable object</entry><entry name="modifiable">0</entry></properties></readpanel></dialog>]]></xui>
       </row>
    </gui_description>
    <elements>
       <row>
          <line_number>1</line_number>
-         <name>CLIENT#</name>
-         <reference>VARA.SQLI.CLIENTS</reference>
+         <name>OBJECT#</name>
+         <reference>VARA.SQLI.EXECUTABLE_OBJ</reference>
          <reference_type>VARA</reference_type>
-         <xui><![CDATA[<combo customfield="" dynamic="0" enabled="1" fill="b" focus="0" id="CLIENTs.00" modifiable="1" nl="1" quotes="" reference="VARA.SQLI.CLIENTS" text="Client" tooltip="" xmlkey="" xmlpath=""><properties><entry listparam="C" name="reference">VARA.SQLI.CLIENTS</entry><entry name="text">Client</entry><entry name="quotes"/><entry name="id">CLIENTs.00</entry><entry name="enabled">0</entry><entry name="focus">0</entry><entry name="tooltip"/><entry name="dynamic">0</entry><entry name="customfield"/><entry name="xmlkey"/><entry name="xmlpath"/><entry name="modifiable">1</entry></properties></combo>]]></xui>
+         <xui><![CDATA[<combo customfield="" dynamic="0" enabled="1" fill="b" focus="0" id="OBJECTs.00" modifiable="1" nl="1" quotes="" reference="VARA.SQLI.EXECUTABLE_OBJ" text="Task to start" tooltip="" xmlkey="" xmlpath=""><properties><entry listparam="C" name="reference">VARA.SQLI.EXECUTABLE_OBJ</entry><entry name="text">Task to start</entry><entry name="quotes"/><entry name="id">OBJECTs.00</entry><entry name="enabled">0</entry><entry name="focus">0</entry><entry name="tooltip"/><entry name="dynamic">0</entry><entry name="customfield"/><entry name="xmlkey"/><entry name="xmlpath"/><entry name="modifiable">1</entry></properties></combo>]]></xui>
          <ui_type>combo</ui_type>
       </row>
    </elements>

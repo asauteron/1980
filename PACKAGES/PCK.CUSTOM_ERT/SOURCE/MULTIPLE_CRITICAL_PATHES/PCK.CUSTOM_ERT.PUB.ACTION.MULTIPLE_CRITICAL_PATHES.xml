@@ -12,8 +12,9 @@
          <child_flags>00000000000000000000000000000000</child_flags>
          <child_queue>*OWN</child_queue>
          <deactivation_condition>ANY_OK</deactivation_condition>
+         <ert>318</ert>
          <workflow_children>21</workflow_children>
-         <last_runtimes>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</last_runtimes>
+         <last_runtimes>PgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==</last_runtimes>
          <max_parallel_action>1</max_parallel_action>
          <mrt_method>131072</mrt_method>
          <mrt_time>000000</mrt_time>

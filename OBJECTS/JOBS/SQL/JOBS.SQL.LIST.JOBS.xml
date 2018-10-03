@@ -32,7 +32,7 @@
       <row>
          <connection_object>CONN.SQL.AWA122</connection_object>
          <platform>SQL</platform>
-         <agent>NB000823</agent>
+         <agent>SQL01</agent>
          <login>LOGIN.SAUAN03</login>
          <optional_reports>PLOG</optional_reports>
          <job_report_path>2</job_report_path>

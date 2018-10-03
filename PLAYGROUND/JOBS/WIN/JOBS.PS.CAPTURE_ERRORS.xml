@@ -34,6 +34,13 @@
 bkwbflorjv-tgk
 :END_EXT_INT]]></process>
       </row>
+      <row>
+         <post_process><![CDATA[:SET &HND# = PREP_PROCESS_REPORT(,,,"*file not found*")
+:PROCESS &HND#
+:   SEND_MSG &$USER#,&$DEPARTMENT#,"Error occurred while copying."
+:   MODIFY_STATE RETCODE=50 
+:ENDPROCESS]]></post_process>
+      </row>
    </scripts>
    <job_attributes>
       <row>

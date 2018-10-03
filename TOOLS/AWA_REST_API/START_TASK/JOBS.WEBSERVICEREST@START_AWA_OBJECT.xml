@@ -43,22 +43,12 @@
    <extended_values>
       <row>
          <type>2</type>
-         <name>isCurl</name>
-         <value>false</value>
-      </row>
-      <row>
-         <type>2</type>
          <name>componentName</name>
          <value>WebServiceRest</value>
       </row>
       <row>
          <type>2</type>
          <name>runType</name>
-         <value>REST</value>
-      </row>
-      <row>
-         <type>2</type>
-         <name>curl</name>
          <value>REST</value>
       </row>
       <row>
@@ -259,6 +249,16 @@
       </row>
       <row>
          <type>2</type>
+         <name>isCurl</name>
+         <value>false</value>
+      </row>
+      <row>
+         <type>2</type>
+         <name>curl</name>
+         <value>false</value>
+      </row>
+      <row>
+         <type>2</type>
          <name>mediaType</name>
          <value>application/json</value>
       </row>
@@ -374,22 +374,12 @@
          <prompt_set>PRPT@START_AWA_OBJECT</prompt_set>
          <display_order>1</display_order>
       </row>
-      <row>
-         <line_number>1</line_number>
-         <prompt_set>PRPT@AWA_REST_API.EXPORT_OBJECT</prompt_set>
-         <display_order>2</display_order>
-      </row>
    </prompt_set_list>
    <prompt_set_defaults>
       <row>
          <prompt_set_element_number>2</prompt_set_element_number>
          <prompt_set>PRPT@START_AWA_OBJECT</prompt_set>
          <variable_name>CLIENT#</variable_name>
-      </row>
-      <row>
-         <prompt_set_element_number>1</prompt_set_element_number>
-         <prompt_set>PRPT@AWA_REST_API.EXPORT_OBJECT</prompt_set>
-         <variable_name>OBJECT#</variable_name>
       </row>
    </prompt_set_defaults>
    <rollback_definitions>
